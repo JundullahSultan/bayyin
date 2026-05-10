@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>List of Surahs | Al-Qur'an</title>
+    <meta
+      name="description"
+      content="Complete list of 114 Surahs of the Holy Qur'an with names and numbers, presented in a clean, elegant layout."
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #fdf9f2;
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          sans-serif;
+        line-height: 1.5;
+        color: #1e2a32;
+        padding: 2rem 1rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 32px;
+        box-shadow:
+          0 20px 35px -12px rgba(0, 0, 0, 0.08),
+          0 2px 4px rgba(0, 0, 0, 0.02);
+        overflow: hidden;
+      }
+
+      .content-inner {
+        padding: 2rem 2rem 2.5rem;
+      }
+
+      @media (max-width: 680px) {
+        .content-inner {
+          padding: 1.5rem;
+        }
+        body {
+          padding: 1rem 0.75rem;
+        }
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: #1e3a4d;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .subhead {
+        color: #6f5c48;
+        margin-bottom: 1.8rem;
+        border-left: 3px solid #c29b6b;
+        padding-left: 1rem;
+        font-weight: 400;
+      }
+
+      .meta-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 1rem 0 2rem 0;
+        background: #f6f2eb;
+        padding: 0.9rem 1.2rem;
+        border-radius: 24px;
+        font-size: 0.9rem;
+      }
+
+      .meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: white;
+        padding: 0.3rem 0.9rem;
+        border-radius: 40px;
+      }
+
+      .meta-label {
+        font-weight: 600;
+        color: #8b5a2b;
+      }
+
+      /* surah grid */
+      .surah-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .surah-card {
+        background: #ffffff;
+        border: 1px solid #ede5da;
+        border-radius: 20px;
+        padding: 0.9rem 1.2rem;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .surah-card:hover {
+        border-color: #dccebc;
+        background: #fefcf8;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        transform: translateY(-2px);
+        cursor: pointer;
+      }
+
+      .surah-number {
+        background: #f0e9df;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 40px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #6f4e2e;
+        flex-shrink: 0;
+      }
+
+      .surah-name {
+        font-weight: 600;
+        font-size: 1.05rem;
+        color: #2c4c5e;
+      }
+
+      .surah-name-en {
+        font-size: 0.85rem;
+        color: #8c7a64;
+        margin-top: 0.2rem;
+      }
+
+      .footer-note {
+        margin-top: 2.5rem;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #8c7a64;
+        border-top: 1px solid #ece1d3;
+        padding-top: 1.5rem;
+      }
+
+      @media (max-width: 600px) {
+        .surah-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content-inner">
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+          "
+        >
+          <h1>
+            Sūrahs of the Qur’ān
+            <span style="font-size: 1rem; font-weight: normal">(114)</span>
+          </h1>
+        </div>
+        <div class="subhead">
+          Chapters revealed in Makkah and Madinah — arranged in the noble
+          Qur’anic order
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Total Surahs:</span> 114
+          </div>
+          <div class="meta-item"><span class="meta-label">Makki:</span> 86</div>
+          <div class="meta-item">
+            <span class="meta-label">Madani:</span> 28
+          </div>
+          <div class="meta-item"><span class="meta-label">Juz:</span> 30</div>
+        </div>
+
+        <div class="surah-grid">
+          <!-- 114 Surahs list: number and English name (common transliteration) -->
+
+          <div class="surah-card">
+            <div class="surah-number">78</div>
+            <div>
+              <div class="surah-name">An-Naba'</div>
+              <div class="surah-name-en">The Tidings</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">79</div>
+            <div>
+              <div class="surah-name">An-Nazi'at</div>
+              <div class="surah-name-en">Those who drag forth</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">80</div>
+            <div>
+              <div class="surah-name">'Abasa</div>
+              <div class="surah-name-en">He Frowned</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">81</div>
+            <div>
+              <div class="surah-name">At-Takwir</div>
+              <div class="surah-name-en">The Overthrowing</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">82</div>
+            <div>
+              <div class="surah-name">Al-Infitar</div>
+              <div class="surah-name-en">The Cleaving</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">83</div>
+            <div>
+              <div class="surah-name">Al-Mutaffifin</div>
+              <div class="surah-name-en">The Defrauders</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">84</div>
+            <div>
+              <div class="surah-name">Al-Inshiqaq</div>
+              <div class="surah-name-en">The Sundering</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">85</div>
+            <div>
+              <div class="surah-name">Al-Buruj</div>
+              <div class="surah-name-en">The Mansions of the Stars</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">86</div>
+            <div>
+              <div class="surah-name">At-Tariq</div>
+              <div class="surah-name-en">The Nightcomer</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">87</div>
+            <div>
+              <div class="surah-name">Al-A'la</div>
+              <div class="surah-name-en">The Most High</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">88</div>
+            <div>
+              <div class="surah-name">Al-Ghashiyah</div>
+              <div class="surah-name-en">The Overwhelming</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">89</div>
+            <div>
+              <div class="surah-name">Al-Fajr</div>
+              <div class="surah-name-en">The Dawn</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">90</div>
+            <div>
+              <div class="surah-name">Al-Balad</div>
+              <div class="surah-name-en">The City</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">91</div>
+            <div>
+              <div class="surah-name">Ash-Shams</div>
+              <div class="surah-name-en">The Sun</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">92</div>
+            <div>
+              <div class="surah-name">Al-Layl</div>
+              <div class="surah-name-en">The Night</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">93</div>
+            <div>
+              <div class="surah-name">Ad-Duha</div>
+              <div class="surah-name-en">The Morning Hours</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">94</div>
+            <div>
+              <div class="surah-name">Ash-Sharh</div>
+              <div class="surah-name-en">The Relief</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">95</div>
+            <div>
+              <div class="surah-name">At-Tin</div>
+              <div class="surah-name-en">The Fig</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">96</div>
+            <div>
+              <div class="surah-name">Al-'Alaq</div>
+              <div class="surah-name-en">The Clot</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">97</div>
+            <div>
+              <div class="surah-name">Al-Qadr</div>
+              <div class="surah-name-en">The Power</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">98</div>
+            <div>
+              <div class="surah-name">Al-Bayyinah</div>
+              <div class="surah-name-en">The Clear Proof</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">99</div>
+            <div>
+              <div class="surah-name">Az-Zalzalah</div>
+              <div class="surah-name-en">The Earthquake</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">100</div>
+            <div>
+              <div class="surah-name">Al-'Adiyat</div>
+              <div class="surah-name-en">The Chargers</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">101</div>
+            <div>
+              <div class="surah-name">Al-Qari'ah</div>
+              <div class="surah-name-en">The Calamity</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">102</div>
+            <div>
+              <div class="surah-name">At-Takathur</div>
+              <div class="surah-name-en">The Rivalry in world increase</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">103</div>
+            <div>
+              <div class="surah-name">Al-'Asr</div>
+              <div class="surah-name-en">The Declining Day</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">104</div>
+            <div>
+              <div class="surah-name">Al-Humazah</div>
+              <div class="surah-name-en">The Traducer</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">105</div>
+            <div>
+              <div class="surah-name">Al-Fil</div>
+              <div class="surah-name-en">The Elephant</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">106</div>
+            <div>
+              <div class="surah-name">Quraysh</div>
+              <div class="surah-name-en">Quraysh</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">107</div>
+            <div>
+              <div class="surah-name">Al-Ma'un</div>
+              <div class="surah-name-en">The Small Kindnesses</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">108</div>
+            <div>
+              <div class="surah-name">Al-Kawthar</div>
+              <div class="surah-name-en">The Abundance</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">109</div>
+            <div>
+              <div class="surah-name">Al-Kafirun</div>
+              <div class="surah-name-en">The Disbelievers</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">110</div>
+            <div>
+              <div class="surah-name">An-Nasr</div>
+              <div class="surah-name-en">The Divine Support</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">111</div>
+            <div>
+              <div class="surah-name">Al-Masad</div>
+              <div class="surah-name-en">The Palm Fiber</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">112</div>
+            <div>
+              <div class="surah-name">Al-Ikhlas</div>
+              <div class="surah-name-en">The Sincerity</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">113</div>
+            <div>
+              <div class="surah-name">Al-Falaq</div>
+              <div class="surah-name-en">The Daybreak</div>
+            </div>
+          </div>
+          <div class="surah-card">
+            <div class="surah-number">114</div>
+            <div>
+              <div class="surah-name">An-Nas</div>
+              <div class="surah-name-en">The Mankind</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-note">
+          ✦ List of 114 Surahs of the Holy Qur'an ✦ — Al-Fatihah to An-Nas
+          <br />
+          “This is the Book about which there is no doubt, a guidance for those
+          conscious of Allah.” (Qur'an, 2:2)
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

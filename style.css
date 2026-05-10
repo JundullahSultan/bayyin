@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fdf9f2;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    sans-serif;
+  line-height: 1.55;
+  color: #1e2a32;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.content-inner {
+  padding: 2rem 2rem 2rem;
+}
+
+@media (max-width: 680px) {
+  .content-inner {
+    padding: 1.5rem;
+  }
+  body {
+    padding: 1rem 0.75rem;
+  }
+}
+
+/* header styles */
+h1 {
+  font-size: 2rem;
+  color: #1e3a4d;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.surah-badge {
+  background: #e9e2d4;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.2rem 0.8rem;
+  border-radius: 40px;
+  color: #4e3e2e;
+}
+
+.meta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0 2rem 0;
+  background: #f6f2eb;
+  padding: 0.9rem 1.2rem;
+  border-radius: 24px;
+  font-size: 0.9rem;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  padding: 0.3rem 0.9rem;
+  border-radius: 40px;
+}
+
+.meta-label {
+  font-weight: 600;
+  color: #8b5a2b;
+}
+
+/* ayah card */
+.ayah-card {
+  background: #ffffff;
+  border: 1px solid #ede5da;
+  border-radius: 28px;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.ayah-card:hover {
+  border-color: #dccebc;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+}
+
+.ayah-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.2rem 1.5rem 0.6rem 1.5rem;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 28px 28px 0 0;
+}
+
+.ayah-number {
+  background: #f0e9df;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  font-weight: 700;
+  color: #6f4e2e;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.toggle-icon {
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: #a9875b;
+  transition: transform 0.2s;
+  width: 32px;
+  text-align: center;
+  line-height: 1;
+  user-select: none;
+}
+
+.arabic-text {
+  font-family:
+    "Calibri", "Scheherazade New", "Amiri", "Noto Naskh Arabic", serif;
+  font-size: 1.9rem;
+  line-height: 1.4;
+  text-align: right;
+  direction: rtl;
+  padding: 0.2rem 1.5rem 0 1.5rem;
+  color: #241f1a;
+  word-break: break-word;
+}
+
+.translation-text {
+  padding: 0.5rem 1.5rem 0.8rem 1.5rem;
+  color: #5a6a78;
+  font-style: italic;
+  font-size: 1rem;
+  border-left: 3px solid #e4d5c4;
+  margin: 1rem 1.5rem 1.5rem 1.5rem;
+  background: #fefcf8;
+  border-radius: 9px;
+}
+
+.explanation-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease-out;
+  background: #fefaf4;
+  border-radius: 0 0 28px 28px;
+}
+
+.explanation-wrapper.show {
+  max-height: 3000px; /* enough for long content */
+  transition: max-height 0.5s ease-in;
+}
+
+.explanation-content {
+  padding: 1.2rem 1.8rem 1.8rem 1.8rem;
+  border-top: 1px solid #e7ddd0;
+  font-size: 0.95rem;
+  color: #2f3a42;
+}
+
+/* detailed tafsir styling (only for ayah1) */
+.detail-paragraph {
+  margin: 0.85rem 0;
+  line-height: 1.65;
+}
+.explanation-content h3 {
+  font-size: 1.35rem;
+  margin: 1rem 0 0.5rem 0;
+  color: #2c4c5e;
+  border-left: 4px solid #c29b6b;
+  padding-left: 0.75rem;
+}
+.explanation-content blockquote {
+  background: #f3ede3;
+  border-left: 4px solid #b5824a;
+  padding: 0.7rem 1.2rem;
+  margin: 1rem 0;
+  font-style: normal;
+  font-weight: 500;
+  border-radius: 20px;
+}
+.explanation-content .list-title {
+  font-weight: 700;
+  margin: 0.8rem 0 0.2rem 0;
+  color: #7d5c38;
+}
+.explanation-content ul {
+  margin: 0.5rem 0 0.8rem 1.5rem;
+}
+.explanation-content li {
+  margin: 0.4rem 0;
+}
+.simple-explanation {
+  background: #f4efe8;
+  padding: 1rem 1.3rem;
+  border-radius: 20px;
+  text-align: center;
+  color: #8c7a64;
+  font-style: normal;
+}
+
+.footer-note {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #8c7a64;
+  border-top: 1px solid #ece1d3;
+  padding-top: 1.5rem;
+}
+
+@media (max-width: 550px) {
+  .arabic-text {
+    font-size: 1.5rem;
+  }
+  .ayah-header {
+    padding: 1rem 1rem 0.2rem 1rem;
+  }
+  .translation-text {
+    margin: 0 1rem 0.5rem 1rem;
+  }
+  .explanation-content {
+    padding: 1rem 1.2rem 1.5rem;
+  }
+}

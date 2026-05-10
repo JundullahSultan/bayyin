@@ -1,0 +1,132 @@
+<%- include('partials/header') %>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;">
+  <h1>Surah <%= surah.surahName %> <span style="font-size: 1rem; font-weight: normal;">(<%= surah.surahNameEnglish %>)</span></h1>
+  <span class="surah-badge">Surah <%= surah.surahNumber %> • <%= surah.totalAyahs %> Ayahs • <%= surah.revelationType %></span>
+</div>
+
+<div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">Revelation:</span> <%= surah.revelationType %></div>
+  <div class="meta-item"><span class="meta-label">Juz:</span> <%= surah.juz %></div>
+  <div class="meta-item"><span class="meta-label">Total Ayahs:</span> <%= surah.totalAyahs %></div>
+  <div class="meta-item"><span class="meta-label">Surah Number:</span> <%= surah.surahNumber %></div>
+</div>
+
+<div class="back-button">
+  <a href="/">← Back to all Surahs</a>
+</div>
+
+<div id="ayahs-container">
+  <% surah.ayahs.forEach((ayah, index) => { %>
+    <div class="ayah-card">
+      <div class="ayah-header" data-ayah="<%= ayah.ayahNumber %>">
+        <div class="ayah-number"><%= ayah.ayahNumber %></div>
+        <div style="flex: 1"></div>
+        <div class="toggle-icon" data-ayah="<%= ayah.ayahNumber %>">+</div>
+      </div>
+      <div class="arabic-text"><%= ayah.arabicText %></div>
+      <div class="translation-text"><%= ayah.translation %></div>
+      <div class="explanation-wrapper" id="explanation-<%= ayah.ayahNumber %>" style="max-height: 0; overflow: hidden;">
+        <div class="explanation-content">
+  <% if (ayah.explanation && ayah.explanation.summary) { %>
+    
+    <div class="detail-paragraph"><strong>Summary:</strong> <%= ayah.explanation.summary %></div>
+
+    <% if (ayah.explanation.themes && ayah.explanation.themes.length > 0) { %>
+      <div class="list-title">🌟 Key Themes</div>
+      <ul>
+        <% ayah.explanation.themes.forEach(theme => { %>
+          <li><%= theme %></li>
+        <% }); %>
+      </ul>
+    <% } %>
+
+    <% if (ayah.explanation.details && ayah.explanation.details.length > 0) { %>
+      <% ayah.explanation.details.forEach(detail => { %>
+        <% if (detail.type === 'heading') { %>
+          <h3><%= detail.content %></h3>
+        <% } else if (detail.type === 'paragraph') { %>
+          <div class="detail-paragraph"><%= detail.content %></div>
+        <% } else if (detail.type === 'list') { %>
+          <div class="list-title"><%= detail.title %></div>
+          <ul>
+            <% detail.items.forEach(item => { %>
+              <li><%= item %></li>
+            <% }); %>
+          </ul>
+        <% } %>
+      <% }); %>
+    <% } %>
+
+  <% } else { %>
+    <div class="simple-explanation">
+      📖 Tafsir insights for this ayah are being compiled.
+    </div>
+  <% } %>
+</div>
+      </div>
+    </div>
+  <% }); %>
+</div>
+
+<div class="footer-note">
+  🌙 Surah <%= surah.surahName %> — Click the <span style="font-weight:bold;">+ / –</span> icon on any ayah to view or hide its explanation.
+</div>
+
+<script>
+  // Accordion toggle functionality for ayahs
+  document.querySelectorAll('.ayah-card').forEach((card) => {
+    const toggleBtn = card.querySelector('.toggle-icon');
+    const explanationWrapper = card.querySelector('.explanation-wrapper');
+    const header = card.querySelector('.ayah-header');
+    
+    if (toggleBtn && explanationWrapper) {
+      
+      const toggleAccordion = () => {
+        const isCurrentlyOpen = toggleBtn.textContent.trim() === '–';
+
+        // 1. Close ALL explanations and reset ALL icons
+        document.querySelectorAll('.ayah-card').forEach(otherCard => {
+          const otherWrapper = otherCard.querySelector('.explanation-wrapper');
+          const otherBtn = otherCard.querySelector('.toggle-icon');
+          
+          if (otherWrapper && otherBtn) {
+            otherWrapper.style.maxHeight = '0';
+            otherBtn.textContent = '+';
+          }
+        });
+
+        // 2. If the one we clicked wasn't already open, open it now
+        if (!isCurrentlyOpen) {
+          explanationWrapper.style.maxHeight = explanationWrapper.scrollHeight + 'px';
+          toggleBtn.textContent = '–';
+          
+          // 3. Smoothly scroll the newly opened card to the top of the screen
+          // We use a small delay (150ms) to allow the previous card to collapse first
+          setTimeout(() => {
+            card.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start' 
+            });
+          }, 150); 
+        }
+      };
+
+      // Event listener for the + / - icon
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        toggleAccordion();
+      });
+      
+      // Event listener for the whole header bar
+      if (header) {
+        header.addEventListener('click', (e) => {
+          if (e.target === toggleBtn || toggleBtn.contains(e.target)) return;
+          toggleAccordion();
+        });
+      }
+    }
+  });
+</script>
+
+<%- include('partials/footer') %>

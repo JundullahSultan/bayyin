@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Surah Al-Infitar (The Cleaving) - Full Surah with Tafsir</title>
+    <meta
+      name="description"
+      content="Complete Surah Al-Infitar (82) with Arabic, English translation, and collapsible explanations. First ayah includes detailed tafsir by Nouman Ali Khan."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content-inner">
+        <!-- surah header -->
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+          "
+        >
+          <h1>
+            Surah Al-Infitar
+            <span style="font-weight: normal">(The Cleaving)</span>
+          </h1>
+          <span class="surah-badge">Surah 82 • Makki • 19 Ayahs</span>
+        </div>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Revelation:</span> Makki
+          </div>
+          <div class="meta-item"><span class="meta-label">Juz:</span> 30</div>
+          <div class="meta-item"><span class="meta-label">Ayahs:</span> 19</div>
+          <div class="meta-item">
+            <span class="meta-label">Tafsir Source (Ayah 1):</span> Nouman Ali
+            Khan
+          </div>
+        </div>
+
+        <!-- Ayahs will be injected via JS for clean iteration, but I'll statically build all ayahs with correct data.
+         Arabic and translation for each ayah of Surah Al-Infitar (1-19) using Sahih International translation -->
+        <div id="ayahs-container"></div>
+        <div class="footer-note">
+          🌙 Surah Al-Infitar — “When the sky breaks apart” — a powerful
+          reminder of the Day of Judgment.<br />
+          Click the <span style="font-weight: bold">+ / –</span> icon on any
+          ayah to view or hide its explanation. First ayah includes full
+          linguistic & thematic tafsir.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // --------------------------------------------------------------
+      // Complete Surah Al-Infitar (82) Arabic and translation (Sahih International)
+      const surahAyahs = [
+        {
+          number: 1,
+          arabic: "إِذَا السَّمَاءُ انْفَطَرَتْ",
+          translation: "When the sky breaks apart",
+        },
+        {
+          number: 2,
+          arabic: "وَإِذَا الْكَوَاكِبُ انْتَثَرَتْ",
+          translation: "And when the stars fall, scattering",
+        },
+        {
+          number: 3,
+          arabic: "وَإِذَا الْبِحَارُ فُجِّرَتْ",
+          translation: "And when the seas are erupted",
+        },
+        {
+          number: 4,
+          arabic: "وَإِذَا الْقُبُورُ بُعْثِرَتْ",
+          translation: "And when the [contents of] graves are scattered",
+        },
+        {
+          number: 5,
+          arabic: "عَلِمَتْ نَفْسٌ مَا قَدَّمَتْ وَأَخَّرَتْ",
+          translation:
+            "A soul will [then] know what it has put forth and kept back.",
+        },
+        {
+          number: 6,
+          arabic: "يَا أَيُّهَا الْإِنْسَانُ مَا غَرَّكَ بِرَبِّكَ الْكَرِيمِ",
+          translation:
+            "O mankind, what has deluded you concerning your Lord, the Generous,",
+        },
+        {
+          number: 7,
+          arabic: "الَّذِي خَلَقَكَ فَسَوَّاكَ فَعَدَلَكَ",
+          translation: "Who created you, proportioned you, and balanced you?",
+        },
+        {
+          number: 8,
+          arabic: "فِي أَيِّ صُورَةٍ مَا شَاءَ رَكَّبَكَ",
+          translation: "In whatever form He willed, He assembled you.",
+        },
+        {
+          number: 9,
+          arabic: "كَلَّا بَلْ تُكَذِّبُونَ بِالدِّينِ",
+          translation: "No! But you deny the Recompense.",
+        },
+        {
+          number: 10,
+          arabic: "وَإِنَّ عَلَيْكُمْ لَحَافِظِينَ",
+          translation: "And indeed, [appointed] over you are keepers,",
+        },
+        {
+          number: 11,
+          arabic: "كِرَامًا كَاتِبِينَ",
+          translation: "Noble and recording,",
+        },
+        {
+          number: 12,
+          arabic: "يَعْلَمُونَ مَا تَفْعَلُونَ",
+          translation: "They know whatever you do.",
+        },
+        {
+          number: 13,
+          arabic: "إِنَّ الْأَبْرَارَ لَفِي نَعِيمٍ",
+          translation: "Indeed, the righteous will be in pleasure,",
+        },
+        {
+          number: 14,
+          arabic: "وَإِنَّ الْفُجَّارَ لَفِي جَحِيمٍ",
+          translation: "And indeed, the wicked will be in Hellfire.",
+        },
+        {
+          number: 15,
+          arabic: "يَصْلَوْنَهَا يَوْمَ الدِّينِ",
+          translation:
+            "They will [enter to] burn therein on the Day of Recompense,",
+        },
+        {
+          number: 16,
+          arabic: "وَمَا هُمْ عَنْهَا بِغَائِبِينَ",
+          translation: "And they will not be absent from it.",
+        },
+        {
+          number: 17,
+          arabic: "وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ",
+          translation:
+            "And what can make you know what the Day of Recompense is?",
+        },
+        {
+          number: 18,
+          arabic: "ثُمَّ مَا أَدْرَاكَ مَا يَوْمُ الدِّينِ",
+          translation:
+            "Then, what can make you know what the Day of Recompense is?",
+        },
+        {
+          number: 19,
+          arabic:
+            "يَوْمَ لَا تَمْلِكُ نَفْسٌ لِنَفْسٍ شَيْئًا ۖ وَالْأَمْرُ يَوْمَئِذٍ لِلَّهِ",
+          translation:
+            "It is the Day when a soul will not possess for another soul [power to do] a thing; and the command, that Day, is [entirely] with Allah.",
+        },
+      ];
+
+      // --------------------------------------------------------------
+      // DETAILED EXPLANATION HTML for Ayah 1 (based on JSON data)
+      const detailedExplanationAyah1 = `
+    <div class="detail-paragraph"><strong>The Meaning of انْفَطَرَتْ</strong><br>The word انْفَطَرَتْ comes from the Arabic root ف-ط-ر (fa-ta-ra). It does not simply mean to crack or split. The root carries the meaning of something tearing open, bursting forth, or rupturing for the first time in a permanent and irreversible way.</div>
+    <div class="detail-paragraph">Classical Arabic scholars used several examples to explain the depth of this root and the kind of rupture it describes.</div>
+    <div class="list-title">📖 Examples Used to Explain the Root ف-ط-ر</div>
+    <ul>
+      <li>A young camel's tooth tearing through the flesh for the first time.</li>
+      <li>Water bursting out after the final layer of earth in a well is pierced.</li>
+      <li>A pimple rupturing and releasing what is inside.</li>
+      <li>Certain mushrooms bursting open and scattering spores.</li>
+      <li>Milk bubbling and transforming during fermentation.</li>
+    </ul>
+    <div class="detail-paragraph">These examples all share a common idea: something hidden inside suddenly bursts through a barrier. The event is decisive, transformative, and not reversible.</div>
+    <blockquote>“The sky will not merely crack. It will burst open in a way it never has before.”</blockquote>
+    <div class="detail-paragraph">When Allah says إِذَا السَّمَاءُ انْفَطَرَتْ, the Qur'an describes the sky itself undergoing this catastrophic rupture. The vast structure that appears permanent and untouchable to humanity will suddenly explode apart. The image communicates complete finality. Once this event begins, creation as humanity knows it has come to an end.</div>
+    <h3>Connection with the Previous and Following Surahs</h3>
+    <div class="detail-paragraph">The Qur'an creates a powerful progression between neighboring surahs. In Surah At-Takwir, Allah described the sky using the word كُشِطَتْ (kushitat), meaning it was peeled away or stripped back. That description presents the sky as weakened and exposed. Here in Surah Al-Infitar, the next stage occurs: the sky bursts apart. Then in Surah Al-Inshiqaq, the sky is described as being completely torn open.</div>
+    <div class="list-title">🌌 The Progressive Collapse of the Sky</div>
+    <ul>
+      <li>Surah At-Takwir: the sky is peeled away.</li>
+      <li>Surah Al-Infitar: the sky bursts apart.</li>
+      <li>Surah Al-Inshiqaq: the sky is completely torn open.</li>
+    </ul>
+    <h3>Why This Surah Mentions Four Events</h3>
+    <div class="detail-paragraph">In Surah At-Takwir, many catastrophic events were listed in succession. Surah Al-Infitar narrows the focus to four major events: the sky bursting apart, the stars scattering, the oceans erupting, and the graves overturning. This is not a reduction in intensity. Rather, it is a refined continuation of the same narrative. The sky being peeled becomes the sky exploding. The stars losing light become stars scattering. The final addition is the overturning of graves, shifting the scene from cosmic collapse to human resurrection and accountability.</div>
+    <h3>The Emotional Force of the Ayah</h3>
+    <div class="detail-paragraph">The ayah is meant to shake the listener. Human beings look at the sky as a symbol of stability and permanence. The Qur'an destroys that illusion immediately. The sky itself, which appears vast and immovable, will one day rupture completely under Allah's command. The imagery forces the listener to confront the reality that nothing in creation is permanent except Allah Himself.</div>
+    <blockquote>“What humanity considers permanent can disappear in a single command from Allah.”</blockquote>
+    <div class="list-title">📌 Key Lessons from Ayah 1</div>
+    <ul>
+      <li>The universe is entirely dependent on Allah and can collapse instantly by His command.</li>
+      <li>The Qur'an uses precise language that combines meaning, imagery, and emotional force.</li>
+      <li>The arrangement of neighboring surahs creates interconnected themes and visual progression.</li>
+      <li>The destruction of the sky is presented as a sign of the certainty of resurrection and judgment.</li>
+      <li>The ayah challenges humanity's assumption that the visible world is stable and everlasting.</li>
+    </ul>
+  `;
+
+      // For ayahs 2 to 19 we show simple placeholder "EXPLANATION"
+      const simpleExplanation = `<div class="simple-explanation">📖 EXPLANATION (Tafsir insights for this ayah to be added — reflecting on the majesty of the Day of Judgment and divine accountability)</div>`;
+
+      // Build each ayah card dynamically
+      const container = document.getElementById("ayahs-container");
+
+      surahAyahs.forEach((ayah, idx) => {
+        const ayahNumber = ayah.number;
+        const arabicText = ayah.arabic;
+        const translationText = ayah.translation;
+        const isFirstAyah = ayahNumber === 1;
+
+        // choose explanation content
+        const explanationHtml = isFirstAyah
+          ? detailedExplanationAyah1
+          : simpleExplanation;
+
+        // create card div
+        const card = document.createElement("div");
+        card.className = "ayah-card";
+
+        // header (clickable)
+        const header = document.createElement("div");
+        header.className = "ayah-header";
+        header.setAttribute("data-ayah", ayahNumber);
+
+        const numberSpan = document.createElement("div");
+        numberSpan.className = "ayah-number";
+        numberSpan.textContent = ayahNumber;
+
+        const toggleSpan = document.createElement("div");
+        toggleSpan.className = "toggle-icon";
+        toggleSpan.textContent = "+"; // collapsed state
+        toggleSpan.style.cursor = "pointer";
+
+        header.appendChild(numberSpan);
+        // add a spacer? but no, we need the toggle on right. Use flex space-between in CSS.
+        // We'll add a div to push toggle to right
+        const rightSpacer = document.createElement("div");
+        rightSpacer.style.flex = "1";
+        header.appendChild(rightSpacer);
+        header.appendChild(toggleSpan);
+
+        // Arabic & Translation
+        const arabicDiv = document.createElement("div");
+        arabicDiv.className = "arabic-text";
+        arabicDiv.textContent = arabicText;
+
+        const translationDiv = document.createElement("div");
+        translationDiv.className = "translation-text";
+        translationDiv.textContent = translationText;
+
+        // explanation wrapper (collapsible)
+        const explWrapper = document.createElement("div");
+        explWrapper.className = "explanation-wrapper";
+        const explContentDiv = document.createElement("div");
+        explContentDiv.className = "explanation-content";
+        explContentDiv.innerHTML = explanationHtml;
+        explWrapper.appendChild(explContentDiv);
+
+        // append all to card
+        card.appendChild(header);
+        card.appendChild(arabicDiv);
+        card.appendChild(translationDiv);
+        card.appendChild(explWrapper);
+
+        container.appendChild(card);
+
+        // store state & add toggle event
+        let isOpen = false;
+        const toggleButton = toggleSpan;
+        const wrapper = explWrapper;
+
+        toggleButton.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (isOpen) {
+            wrapper.classList.remove("show");
+            toggleButton.textContent = "+";
+          } else {
+            wrapper.classList.add("show");
+            toggleButton.textContent = "–";
+          }
+          isOpen = !isOpen;
+        });
+
+        // also allow clicking on header area except the toggle itself? can add for better UX
+        header.addEventListener("click", (e) => {
+          if (e.target === toggleButton || toggleButton.contains(e.target))
+            return;
+          // simulate toggle click
+          if (isOpen) {
+            wrapper.classList.remove("show");
+            toggleButton.textContent = "+";
+          } else {
+            wrapper.classList.add("show");
+            toggleButton.textContent = "–";
+          }
+          isOpen = !isOpen;
+        });
+      });
+    </script>
+  </body>
+</html>
