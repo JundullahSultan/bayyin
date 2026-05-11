@@ -20,32 +20,36 @@ const getAllSurahs = async (req, res) => {
 // Get a specific surah with all its ayahs
 const getSurahById = async (req, res) => {
   try {
-    // 1. Use .lean() to get the raw JSON data and bypass strict Mongoose schema casting
-    // Note: We changed the query to look inside the "meta" object based on your JSON
-
     const cacheKey = `surah_${req.params.id}`;
-    let dbSurah = surahCache.get(cacheKey);
 
-    if (dbSurah) {
-      console.log("Serving from server-side cache");
-    } else {
-      console.log("Fetching from database");
-      dbSurah = await Surah.findOne({
-        "meta.surahNumber": Number(req.params.id),
-      }).lean();
-
-      if (dbSurah) {
-        surahCache.set(cacheKey, dbSurah);
-      }
-    }
+    // Always fetch from database first
+    console.log("Fetching from database");
+    const dbSurah = await Surah.findOne({
+      "meta.surahNumber": Number(req.params.id),
+    }).lean();
 
     if (!dbSurah) {
       return res.status(404).send("Surah not found");
     }
 
-    // 2. Transform the "ayahs" Object from the DB into an Array for the EJS forEach loop
-    const ayahsArray = Object.keys(dbSurah.ayahs).map((key) => {
-      const ayahData = dbSurah.ayahs[key];
+    const dbAyahsLength = Object.keys(dbSurah.ayahs).length;
+    let cachedSurah = surahCache.get(cacheKey);
+    const cachedAyahsLength = cachedSurah
+      ? Object.keys(cachedSurah.ayahs).length
+      : 0;
+
+    if (cachedSurah && cachedAyahsLength === dbAyahsLength) {
+      console.log("Serving from server-side cache");
+      // Use cached data
+    } else {
+      console.log("Updating cache with database data");
+      surahCache.set(cacheKey, dbSurah);
+      cachedSurah = dbSurah;
+    }
+
+    // Now use cachedSurah (which is either from cache or updated from DB)
+    const ayahsArray = Object.keys(cachedSurah.ayahs).map((key) => {
+      const ayahData = cachedSurah.ayahs[key];
       return {
         ayahNumber: parseInt(key),
         arabicText: ayahData.arabicAyah, // Translating arabicAyah to arabicText
@@ -56,12 +60,13 @@ const getSurahById = async (req, res) => {
 
     // 3. Format the top-level Surah object to perfectly match the EJS variables
     const formattedSurah = {
-      surahName: dbSurah.surah,
+      surahName: cachedSurah.surah,
       // Fallback for English name since it isn't in the JSON root
-      surahNameEnglish: dbSurah.surah === "Al-Infitar" ? "The Cleaving" : "",
-      surahNumber: dbSurah.meta.surahNumber,
-      revelationType: dbSurah.meta.revelationType,
-      juz: dbSurah.meta.juz,
+      surahNameEnglish:
+        cachedSurah.surah === "Al-Infitar" ? "The Cleaving" : "",
+      surahNumber: cachedSurah.meta.surahNumber,
+      revelationType: cachedSurah.meta.revelationType,
+      juz: cachedSurah.meta.juz,
       totalAyahs: ayahsArray.length, // Dynamically calculate total ayahs
       ayahs: ayahsArray,
     };
