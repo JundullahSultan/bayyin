@@ -32,12 +32,16 @@ body {
   padding: 2rem 2rem 2rem;
 }
 
+/* responsive styles for mobile */
 @media (max-width: 680px) {
   .content-inner {
     padding: 1.5rem;
   }
   body {
     padding: 1rem 0.75rem;
+  }
+  .arabic-text {
+    font-family: "Scheherazade New", "Amiri", "Noto Naskh Arabic", serif;
   }
 }
 

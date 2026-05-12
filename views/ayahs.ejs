@@ -12,8 +12,19 @@
   <div class="meta-item"><span class="meta-label">Surah Number:</span> <%= surah.surahNumber %></div>
 </div>
 
-<div class="back-button">
-  <a href="/">← Back to all Surahs</a>
+<div class="action-buttons" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+  <div class="back-button" style="margin-bottom: 0;">
+    <a href="/">← Back to all Surahs</a>
+  </div>
+  
+  <a href="/surah/<%= surah.surahNumber %>/download-pdf" class="print-btn" style="text-decoration: none; display: none; align-items: center; gap: 8px;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    Download PDF
+  </a>
 </div>
 
 <div id="ayahs-container">
@@ -28,9 +39,15 @@
       <div class="translation-text"><%= ayah.translation %></div>
       <div class="explanation-wrapper" id="explanation-<%= ayah.ayahNumber %>" style="max-height: 0; overflow: hidden;">
         <div class="explanation-content">
-  <% if (ayah.explanation && ayah.explanation.summary) { %>
+  <% if (ayah.explanation && (ayah.explanation.introduction || ayah.explanation.summary || (ayah.explanation.details && ayah.explanation.details.length > 0))) { %>
     
-    <div class="detail-paragraph"><strong>Summary:</strong> <%= ayah.explanation.summary %></div>
+    <% if (ayah.explanation.introduction) { %>
+      <div class="detail-paragraph" style="white-space: pre-wrap;"><strong>Introduction:</strong><br><%= ayah.explanation.introduction %></div>
+    <% } %>
+
+    <% if (ayah.explanation.summary) { %>
+      <div class="detail-paragraph"><strong>Summary:</strong> <%= ayah.explanation.summary %></div>
+    <% } %>
 
     <% if (ayah.explanation.themes && ayah.explanation.themes.length > 0) { %>
       <div class="list-title">🌟 Key Themes</div>
@@ -127,6 +144,7 @@
       }
     }
   });
+  
 </script>
 
 <%- include('partials/footer') %>

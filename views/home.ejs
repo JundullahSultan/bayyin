@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<nav class="main-nav">
+  <a href="/" class="<%= activeTab === 'surahs' ? 'active' : '' %>">📖 Surahs</a>
+  <a href="/courses" class="<%= activeTab === 'courses' ? 'active' : '' %>">🎓 Courses</a>
+  <a href="/quizzes" class="<%= activeTab === 'quizzes' ? 'active' : '' %>">📝 Quizzes</a>
+</nav>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;">
+  <h1>Sūrahs of the Qur’ān <span style="font-size: 1rem; font-weight: normal;">(<%= surahs.length %>)</span></h1>
+</div>
+<div class="subhead">Chapters revealed in Makkah and Madinah — arranged in the noble Qur’anic order</div>
+
+<div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">Total Surahs:</span> <%= surahs.length %></div>
+  <div class="meta-item"><span class="meta-label">Juz:</span> 30</div>
+</div>
+
+<div class="surah-grid">
+  <% surahs.forEach(surah => { %>
+    <a href="/surah/<%= surah.surahNumber %>" class="surah-card-link">
+      <div class="surah-card">
+        <div class="surah-number"><%= surah.surahNumber %></div>
+        <div>
+          <div class="surah-name"><%= surah.surahName %></div>
+          <div class="surah-name-en"><%= surah.surahNameEnglish %></div>
+        </div>
+      </div>
+    </a>
+  <% }); %>
+</div>
+
+<div class="footer-note">
+  ✦ List of 114 Surahs of the Holy Qur'an ✦ — Al-Fatihah to An-Nas <br>
+  "This is the Book about which there is no doubt, a guidance for those conscious of Allah." (Qur'an, 2:2)
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+
+<nav class="main-nav">
+  <a href="/" class="<%= activeTab === 'surahs' ? 'active' : '' %>">📖 Surahs</a>
+  <a href="/courses" class="<%= activeTab === 'courses' ? 'active' : '' %>">🎓 Courses</a>
+  <a href="/quizzes" class="<%= activeTab === 'quizzes' ? 'active' : '' %>">📝 Quizzes</a>
+</nav>
+
+<div class="empty-state" style="text-align: center; padding: 4rem 1rem; background: var(--container-bg); border-radius: 20px; border: 2px dashed var(--meta-border);">
+  <h3 style="font-size: 1.5rem; color: var(--heading); margin-bottom: 0.5rem;">🎓 Courses Coming Soon</h3>
+  <p style="color: var(--text);">Structured learning paths to deepen your understanding of the Qur'an.</p>
+</div>
+
+<%- include('partials/footer') %>

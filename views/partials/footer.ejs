@@ -1,4 +1,232 @@
-    </div>
+
+<div class="global-footer" role="contentinfo">
+  <p>Have questions or feedback? Connect with me:</p>
+  <div class="social-links" aria-label="Social media links">
+    <a href="https://facebook.com/jondullah.sultan.7" target="_blank" rel="noopener noreferrer" class="social-icon fb" aria-label="Facebook">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+      </svg>
+    </a>
+    
+    <a href="https://instagram.com/modasseresrar" target="_blank" rel="noopener noreferrer" class="social-icon ig" aria-label="Instagram">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    </a>
   </div>
+</div>
+
+<div id="transition-loader" role="dialog" aria-label="Loading screen" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--loader-bg, #f9fafb); z-index: 99999; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem;">
+
+  <!-- Card wrapper for the loader – matches your container style -->
+  <div class="loader-card">
+    <div class="loader"></div>
+    <h3>Opening Surah...</h3>
+    <p id="loader-quote" aria-live="polite" aria-atomic="true"></p>
+  </div>
+
+</div>
+
+<style>
+  /* =========================
+     TRANSITION LOADER – BOXED STYLE
+     Reuses global theme variables for dark mode
+     ========================= */
+
+  /* Overlay background & fade transition */
+  #transition-loader {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  #transition-loader.loader-fade {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Card that holds the spinner + text – mirrors your .container style */
+  .loader-card {
+    background: var(--container-bg, #ffffff);
+    border: 1px solid var(--border, #e8e8e8);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    max-width: 400px;
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    text-align: center;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  /* Custom dual‑square spinner – now respects theme accent */
+  .loader {
+    display: inline-flex;
+    gap: 5px;
+    margin-bottom: 2rem;
+  }
+  .loader:before,
+  .loader:after {
+    content: "";
+    width: 25px;
+    aspect-ratio: 1;
+    box-shadow: 0 0 0 3px inset var(--spinner-accent, #8b5a2b);
+    animation: l5 1.5s infinite;
+  }
+  .loader:after {
+    --s: -1;
+  }
+  @keyframes l5 {
+    0%   { transform: scaleX(var(--s,1)) translate(0) scale(1); }
+    33%  { transform: scaleX(var(--s,1)) translate(calc(50% + 2.5px)) scale(1); }
+    66%  { transform: scaleX(var(--s,1)) translate(calc(50% + 2.5px)) scale(2); }
+    100% { transform: scaleX(var(--s,1)) translate(0) scale(1); }
+  }
+
+  /* Heading style */
+  #transition-loader h3 {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--heading, #111111);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+    animation: softPulse 2.5s ease-in-out infinite;
+  }
+
+  /* Quote text */
+  #loader-quote {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--subhead, #6b6b6b);
+    max-width: 320px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.85;
+    animation: softPulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes softPulse {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 480px) {
+    .loader-card {
+      padding: 2rem 1.25rem;
+    }
+    #transition-loader h3 {
+      font-size: 1.3rem;
+    }
+    #loader-quote {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Array of beautiful, comforting quotes to display while loading
+  const loadingQuotes = [
+    "\"Indeed, with hardship [will be] ease.\" — Qur'an 94:6",
+    "\"And He found you lost and guided [you].\" — Qur'an 93:7",
+    "\"So remember Me; I will remember you.\" — Qur'an 2:152",
+    "\"He knows what is within the heavens and earth...\" — Qur'an 64:4",
+    "\"And Allah is the best of providers.\" — Qur'an 62:11",
+    "\"My mercy encompasses all things.\" — Qur'an 7:156"
+  ];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const loaderOverlay = document.getElementById('transition-loader');
+    const quoteElement = document.getElementById('loader-quote');
+
+    const triggerLinks = document.querySelectorAll('.surah-card-link, .pagination-btn');
+
+    triggerLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (e.ctrlKey || e.shiftKey || e.metaKey || e.button !== 0) return;
+
+        if (quoteElement) {
+          const randomQuote = loadingQuotes[Math.floor(Math.random() * loadingQuotes.length)];
+          quoteElement.textContent = randomQuote;
+        }
+        
+        if (loaderOverlay) {
+          loaderOverlay.classList.remove('loader-fade');
+          loaderOverlay.style.display = 'flex';
+        }
+      });
+    });
+    
+    window.addEventListener('pageshow', () => {
+      if (loaderOverlay) {
+        loaderOverlay.classList.add('loader-fade');
+        setTimeout(() => {
+          if (loaderOverlay.classList.contains('loader-fade')) {
+            loaderOverlay.style.display = 'none';
+          }
+        }, 350);
+      }
+    });
+  });
+
+  window.addEventListener('load', function() {
+    const loader = document.getElementById('page-loader');
+    if (loader) {
+      loader.classList.add('loader-hidden');
+    }
+
+    let visitorId = localStorage.getItem('quran_visitor_id');
+    if (!visitorId) {
+      visitorId = 'vis_' + Math.random().toString(36).slice(2, 11) + Date.now();
+      localStorage.setItem('quran_visitor_id', visitorId);
+    }
+
+    const pathParts = window.location.pathname.split('/');
+    let currentSurah = null;
+    if (pathParts[1] === 'surah' && pathParts[2] && !isNaN(pathParts[2])) {
+      currentSurah = parseInt(pathParts[2]);
+    }
+
+    const PING_INTERVAL = 10; 
+    
+    const sendPing = (timeToAdd) => {
+      try {
+        fetch('/api/track-visitor', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            visitorId: visitorId, 
+            timeSpentToAdd: timeToAdd,
+            surahId: currentSurah
+          }),
+          keepalive: true
+        });
+      } catch (err) {
+        // silently fail
+      }
+    };
+
+    sendPing(0);
+    const intervalId = setInterval(() => {
+      sendPing(PING_INTERVAL);
+    }, PING_INTERVAL * 1000);
+
+    window.addEventListener('beforeunload', () => {
+      clearInterval(intervalId);
+      const payload = JSON.stringify({ 
+        visitorId: visitorId, 
+        timeSpentToAdd: PING_INTERVAL,
+        surahId: currentSurah
+      });
+      navigator.sendBeacon('/api/track-visitor', new Blob([payload], { type: 'application/json' }));
+    });
+  });
+</script>
 </body>
 </html>

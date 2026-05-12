@@ -3,11 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <title><%= typeof title !== 'undefined' ? title : "Al-Qur'an" %></title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('quran_theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.add('light');
+      }
+    })();
+  </script>
+
   <div class="container">
     <div class="content-inner">
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2 style="margin: 0; color: var(--heading);">📖 Al-Qur'an</h2>
+        
+        <button id="theme-toggle" aria-label="Toggle Dark Mode" style="background: transparent; border: 1px solid var(--border); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text); transition: all 0.2s ease;">
+          <svg id="sun-icon" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="moon-icon" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const themeBtn = document.getElementById('theme-toggle');
+          const sunIcon = document.getElementById('sun-icon');
+          const moonIcon = document.getElementById('moon-icon');
+          
+          // Checks the body tag and correctly displays the right icon
+          const updateIcons = () => {
+            if (document.body.classList.contains('dark')) {
+              sunIcon.style.display = 'block';
+              moonIcon.style.display = 'none';
+            } else {
+              sunIcon.style.display = 'none';
+              moonIcon.style.display = 'block';
+            }
+          };
+
+          // Run immediately to set the correct icon on page load
+          updateIcons();
+
+          // Listen for clicks
+          themeBtn.addEventListener('click', () => {
+            if (document.body.classList.contains('dark')) {
+              // Switch to Light
+              document.body.classList.remove('dark');
+              document.body.classList.add('light');
+              localStorage.setItem('quran_theme', 'light');
+            } else {
+              // Switch to Dark
+              document.body.classList.remove('light');
+              document.body.classList.add('dark');
+              localStorage.setItem('quran_theme', 'dark');
+            }
+            updateIcons();
+          });
+        });
+      </script>

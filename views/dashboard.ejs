@@ -1,0 +1,174 @@
+<%- include('partials/header') %>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem;">
+  <h1>📊 Analytics Dashboard</h1>
+  <a href="/" style="color: #8b5a2b; text-decoration: none; font-weight: 500;">← Back to Site</a>
+</div>
+
+<div class="meta-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+  <div style="background: white; padding: 1.5rem; border-radius: 20px; border: 1px solid #ede5da; text-align: center;">
+    <div style="color: #8c7a64; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">TOTAL VISITORS</div>
+    <div style="font-size: 2.5rem; font-weight: 700; color: #2c4c5e;"><%= totalVisitors %></div>
+  </div>
+
+  <div style="background: white; padding: 1.5rem; border-radius: 20px; border: 1px solid #ede5da; text-align: center;">
+    <div style="color: #8c7a64; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">AVG TIME SPENT</div>
+    <div style="font-size: 2.5rem; font-weight: 700; color: #2c4c5e;"><%= avgTimeString %></div>
+  </div>
+</div>
+
+<h2 style="margin: 2rem 0 1rem 0; font-size: 1.4rem; color: #1e3a4d;">Visitors by Country</h2>
+<div style="background: white; border-radius: 20px; border: 1px solid #ede5da; padding: 1rem;">
+  <% if (countryStats.length > 0) { %>
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr style="border-bottom: 2px solid #f0e9df; text-align: left;">
+          <th style="padding: 1rem; color: #8b5a2b;">Country Code</th>
+          <th style="padding: 1rem; color: #8b5a2b;">Total Visitors</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% countryStats.forEach(stat => { %>
+          <tr style="border-bottom: 1px solid #f6f2eb;">
+            <td style="padding: 1rem; font-weight: 500;"><%= stat._id === 'Unknown' ? '🌐 Unknown / Local' : stat._id %></td>
+            <td style="padding: 1rem;"><%= stat.count %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p style="text-align: center; color: #8c7a64; padding: 2rem;">No visitor data collected yet.</p>
+  <% } %>
+</div>
+
+<h2 style="margin: 2.5rem 0 1rem 0; font-size: 1.4rem; color: #1e3a4d;">🏆 Most Read Surahs</h2>
+<div style="background: white; border-radius: 20px; border: 1px solid #ede5da; padding: 1rem; overflow-x: auto;">
+  <% if (topSurahs && topSurahs.length > 0) { %>
+    <table style="width: 100%; border-collapse: collapse; min-width: 500px;">
+      <thead>
+        <tr style="border-bottom: 2px solid #f0e9df; text-align: left;">
+          <th style="padding: 1rem; color: #8b5a2b; font-size: 0.95rem;">Surah</th>
+          <th style="padding: 1rem; color: #8b5a2b; font-size: 0.95rem;">Unique Readers</th>
+          <th style="padding: 1rem; color: #8b5a2b; font-size: 0.95rem;">Total Time Read</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% topSurahs.forEach(stat => { %>
+          <tr style="border-bottom: 1px solid #f6f2eb; transition: background 0.2s;">
+            <td style="padding: 1rem; font-weight: 600; color: #2c4c5e;">
+              <span style="background: #f0e9df; padding: 0.3rem 0.7rem; border-radius: 20px; font-size: 0.85rem; margin-right: 0.5rem; color: #6f4e2e;">
+                <%= stat.surahNumber %>
+              </span>
+              <%= stat.name %>
+            </td>
+            <td style="padding: 1rem; color: #6f5c48;"><%= stat.uniqueReaders %> readers</td>
+            <td style="padding: 1rem; color: #8b5a2b; font-weight: 700;"><%= stat.totalTimeFormatted %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p style="text-align: center; color: #8c7a64; padding: 2rem;">Not enough reading data collected yet.</p>
+  <% } %>
+</div>
+
+<h2 style="margin: 3rem 0 1rem 0; font-size: 1.4rem; color: #1e3a4d;">Individual Visitor Log (Recent)</h2>
+<div style="background: white; border-radius: 20px; border: 1px solid #ede5da; padding: 1rem; overflow-x: auto;">
+  <% if (visitorLogs && visitorLogs.length > 0) { %>
+    <table style="width: 100%; border-collapse: collapse; min-width: 600px;">
+      <thead>
+        <tr style="border-bottom: 2px solid #f0e9df; text-align: left;">
+          <th style="padding: 1rem; color: #8b5a2b; font-size: 0.95rem;">Visitor ID</th>
+          <th style="padding: 1rem; color: #8b5a2b; font-size: 0.95rem;">Country</th>
+          <th style="padding: 1rem; color: #8b5a2b; font-size: 0.95rem;">Time Spent</th>
+          <th style="padding: 1rem; color: #8b5a2b; font-size: 0.95rem;">Last Active</th>
+          <th style="padding: 1rem; color: #8b5a2b; font-size: 0.95rem; text-align: center;">View</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% visitorLogs.forEach(log => { %>
+          <tr style="border-bottom: 1px solid #f6f2eb; transition: background 0.2s;">
+            <td style="padding: 1rem; font-family: monospace; font-size: 0.85rem; color: #6f5c48;">
+              <%= log.id %>
+            </td>
+            <td style="padding: 1rem; font-weight: 500; color: #2c4c5e;">
+              <%= log.country %>
+            </td>
+            <td style="padding: 1rem; font-weight: 700; color: #8b5a2b;">
+              <%= log.timeSpent %>
+            </td>
+            <td style="padding: 1rem; font-size: 0.85rem; color: #8c7a64;">
+              <%= log.lastActive %>
+            </td>
+            <td style="padding: 1rem; text-align: center;">
+              <button class="eye-btn" 
+                data-id="<%= log.id %>"
+                data-ip="<%= log.ip %>"
+                data-country="<%= log.country %>"
+                data-os="<%= log.os %>"
+                data-browser="<%= log.browser %>"
+                data-device="<%= log.device %>"
+                data-time="<%= log.timeSpent %>"
+                onclick="openVisitorModal(this)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p style="text-align: center; color: #8c7a64; padding: 2.5rem 1rem;">No individual visitor logs found yet.</p>
+  <% } %>
+</div>
+
+<div id="visitorModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 style="color: #2c4c5e; font-size: 1.25rem;">Visitor Details</h3>
+      <button onclick="closeVisitorModal()" class="close-btn">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="info-row"><span class="info-label">Visitor ID:</span> <span id="m-id" style="font-family: monospace;"></span></div>
+      <div class="info-row"><span class="info-label">IP Address:</span> <span id="m-ip"></span></div>
+      <div class="info-row"><span class="info-label">Location:</span> <span id="m-country"></span></div>
+      <hr style="border: none; border-top: 1px solid #ede5da; margin: 1rem 0;">
+      <div class="info-row"><span class="info-label">Device Model:</span> <span id="m-device" style="color: #8b5a2b; font-weight: 600;"></span></div>
+      <div class="info-row"><span class="info-label">Operating System:</span> <span id="m-os"></span></div>
+      <div class="info-row"><span class="info-label">Browser:</span> <span id="m-browser"></span></div>
+      <hr style="border: none; border-top: 1px solid #ede5da; margin: 1rem 0;">
+      <div class="info-row"><span class="info-label">Total Time Spent:</span> <span id="m-time" style="font-weight: bold;"></span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openVisitorModal(btn) {
+    document.getElementById('m-id').textContent = btn.getAttribute('data-id');
+    document.getElementById('m-ip').textContent = btn.getAttribute('data-ip');
+    document.getElementById('m-country').textContent = btn.getAttribute('data-country');
+    document.getElementById('m-os').textContent = btn.getAttribute('data-os');
+    document.getElementById('m-browser').textContent = btn.getAttribute('data-browser');
+    document.getElementById('m-device').textContent = btn.getAttribute('data-device');
+    document.getElementById('m-time').textContent = btn.getAttribute('data-time');
+    
+    document.getElementById('visitorModal').classList.add('show');
+  }
+
+  function closeVisitorModal() {
+    document.getElementById('visitorModal').classList.remove('show');
+  }
+
+  // Close modal if clicked outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('visitorModal');
+    if (event.target === modal) {
+      closeVisitorModal();
+    }
+  }
+</script>
+
+<%- include('partials/footer') %>

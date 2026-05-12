@@ -18,6 +18,7 @@ const explanationDetailSchema = new mongoose.Schema(
 // Sub-schema for the whole explanation
 const explanationSchema = new mongoose.Schema(
   {
+    introduction: { type: String },
     summary: { type: String },
     themes: [{ type: String }],
     details: [explanationDetailSchema],
